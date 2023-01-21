@@ -8,13 +8,19 @@
  */
 
 /**
- * 
- * @param {number} num 
- * @param  {...string} str 
+ * get number and return str = "()"
+ * @param {number} num
+ * @param  {...string} str
  * @returns {string}
+ * @throws {TypeError} argument num must be number
  */
-// debugger
+
 const getPairBrickets = (num, ...str) => {
+    // debugger;
+    if (typeof num !== "number") {
+        throw new TypeError("type must be number");
+    }
+
     str += "(";
     if (num > 1) {
         str = getPairBrickets(num - 1, str);
@@ -31,6 +37,31 @@ try {
 } catch (error) {
     console.log(error);
 }
+
+// debugger
+// const getPairBrickets = (num, ...str) => {
+//     try {
+//         // debugger;
+//         if (typeof num !== "number") {
+//             throw new TypeError("type must be number");
+//         }
+
+//         str += "(";
+//         if (num > 1) {
+//             str = getPairBrickets(num - 1, str);
+//         }
+//         str += ")";
+//         return str;
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
+
+// console.log(getPairBrickets(4));
+// console.log(getPairBrickets(-4));
+// console.log(getPairBrickets(0));
+// console.log(getPairBrickets("0"));
+// console.log(getPairBrickets("fdsfa"));
 
 /*
 написати рекурсивну функцію, яка приймає два числа і повертає найбільший спільний дільник цих двох чисел
@@ -59,7 +90,21 @@ try {
  */
 
 // debugger;
+/**
+ * get two numbers and return the greatest common divisor of those numbers
+ * @param {number} num1
+ * @param {number} num2
+ * @returns  {number}
+ * @throws {TypeError | RangeError} num1 and num2 must be numbers and must be positive
+ */
 const getDivider = (num1, num2) => {
+    if (typeof num1 !== "number" || typeof num2 !== "number") {
+        throw new TypeError("type must number");
+    }
+
+    if (num1 < 0 || num2 < 0) {
+        throw new RangeError("exp must be positive");
+    }
     if (num1 === num2) {
         return num1;
     }
@@ -76,3 +121,28 @@ try {
 } catch (error) {
     console.log(error);
 }
+
+// const getDivider = (num1, num2) => {
+//   try {
+//       if (typeof num1 !== "number" || typeof num2 !== "number") {
+//           throw new TypeError("type must number");
+//       }
+
+//       if (num1 < 0 || num2 < 0) {
+//           throw new RangeError("exp must be positive");
+//       }
+//       if (num1 === num2) {
+//           return num1;
+//       }
+//       if (num1 > num2) {
+//           return getDivider(num1 - num2, num2);
+//       }
+//       return getDivider(num1, num2 - num1);
+//   } catch (error) {
+//       console.log(error);
+//   }
+// };
+
+// console.log(getDivider(24, 15));
+// console.log(getDivider(3, 3));
+// console.log(getDivider(7, 3));
